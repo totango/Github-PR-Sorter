@@ -7,7 +7,7 @@
 
   "content_scripts": [
 	{
-	  "js": ["jquery.min.js", "moment.min.js", "main.js"],
+	  "js": ["jquery.min.js", "moment.min.js", "jqueryWhenExtended.js", "prSorter.js", "main.js"],
 	  "matches": ["https://github.com/*"],
 	  "run_at": "document_end"
 	}
