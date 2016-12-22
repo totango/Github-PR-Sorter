@@ -3,6 +3,7 @@ function PRSorter (window, $) {
 	var originalLis = [];
 	var sortAsc = true;
 	var numOfPagesDirty = undefined;
+	var BOX_BODY_SELECTOR = "ul.js-navigation-container";
 	var numOfMorePagesInput 	= '<div class="float-left select-menu js-menu-container js-select-menu">' +
 									'<input class="form-control subnav-search-input" type="number" min="0" id="morePages" placeholder="# of additional pages" style="width: 145px; margin-top: 7px; padding: 0 5px;" />' +
 								  '</div>';
@@ -21,7 +22,7 @@ function PRSorter (window, $) {
 
 			$('#sortByMerged').on('click', onSortByMerged);
 
-			var ul = $('ul.Box-body');
+			var ul = $(BOX_BODY_SELECTOR);
 			originalLis = ul.children('li').clone();
 		}
 	}
@@ -31,7 +32,7 @@ function PRSorter (window, $) {
 	}
 
 	function onSortByMerged () {
-		$('ul.Box-body').empty();
+		$(BOX_BODY_SELECTOR).empty();
 		var pagesToLoad = parseInt($('#morePages').val()) || 0;
 
 		if (pagesToLoad !== numOfPagesDirty) {
@@ -70,7 +71,7 @@ function PRSorter (window, $) {
 			}
 		});
 
-		var ul = $('ul.Box-body');
+		var ul = $(BOX_BODY_SELECTOR);
 		ul.append(lis);
 	}
 
@@ -94,7 +95,7 @@ function PRSorter (window, $) {
 				$('body').append(sortedHiddenDivStr);
 				var sortedHiddenDiv = $('#sortedHiddenDiv-' + pageNumber);
 				sortedHiddenDiv.append($(response));
-				var moreLis = sortedHiddenDiv.find('ul.Box-body li');
+				var moreLis = sortedHiddenDiv.find(BOX_BODY_SELECTOR + ' li');
 				moreLis.detach();
 
 				$.each(moreLis, function (i, li) {
