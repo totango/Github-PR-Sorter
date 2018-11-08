@@ -3,9 +3,9 @@ function PRSorter (window, $) {
 	var originalLis = [];
 	var sortAsc = true;
 	var numOfPagesDirty = undefined;
-	var BOX_BODY_SELECTOR = "ul.js-navigation-container";
+	var BOX_BODY_SELECTOR = "div.js-active-navigation-container";
 	var numOfMorePagesInput 	= '<div class="float-left select-menu js-menu-container js-select-menu">' +
-									'<input class="form-control subnav-search-input" type="number" min="0" id="morePages" placeholder="# of additional pages" style="width: 145px; margin-top: 7px; padding: 0 5px;" />' +
+									'<input class="form-control subnav-search-input" type="number" min="0" id="morePages" placeholder="# of additional pages" style="width: 80px; margin-top: 7px; padding: 0 5px;" />' +
 								  '</div>';
 	var sortButton 				= '<div id="sortByMerged" class="float-left select-menu js-menu-container js-select-menu">' +
 									'<button class="btn-link" style="color: #090; margin-left: 5px;">Sort by Merged</button>' +
@@ -23,7 +23,7 @@ function PRSorter (window, $) {
 			$('#sortByMerged').on('click', onSortByMerged);
 
 			var ul = $(BOX_BODY_SELECTOR);
-			originalLis = ul.children('li').clone();
+			originalLis = ul.children('.Box-row').clone();
 		}
 	}
 
@@ -95,11 +95,11 @@ function PRSorter (window, $) {
 				$('body').append(sortedHiddenDivStr);
 				var sortedHiddenDiv = $('#sortedHiddenDiv-' + pageNumber);
 				sortedHiddenDiv.append($(response));
-				var moreLis = sortedHiddenDiv.find(BOX_BODY_SELECTOR + ' li');
+				var moreLis = sortedHiddenDiv.find(BOX_BODY_SELECTOR + ' .Box-row');
 				moreLis.detach();
 
-				$.each(moreLis, function (i, li) {
-					lis.push(li);
+				$.each(moreLis, function (i, listItem) {
+					lis.push(listItem);
 				});
 
 				sortedHiddenDiv.remove();
